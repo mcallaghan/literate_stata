@@ -7,7 +7,7 @@ Set up a working directory with a subdirectory for logs and a subdirectory for r
 should be in this directory as well).
 
 In your do file, save each portion of output you want to be included in your wp doc as a separate text log. 
-Designate the start and the end of the output you want to include with the markers *@*lstart and *@*lend.
+Designate the start and the end of the output you want to include with the markers \*@\*lstart and \*@\*lend.
 
 The program in this ado file (which you can store on your computer following [these](https://stata.com/manuals13/u17.pdf) (pdf)
 instructions) extracts the bit of the log you want (cleaning up some record-keeping stuff that is automatically included) and saves
