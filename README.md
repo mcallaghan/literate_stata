@@ -1,10 +1,9 @@
 #Literate Stata
 
 Literate Stata allows you to save sections of Stata output in a format that can easily be 
-inserted as linked text into a Word Processor document.
+inserted as linked text into a word processor document.
 
-Set up a working directory with a subdirectory for logs and a subdirectory for rtf files (your word processing document
-should be in this directory as well).
+You need to set up a working directory with a subdirectory for logs and a subdirectory for rtf files (your word processing document should be in this directory as well).
 
 In your do file, save each portion of output you want to be included in your wp doc as a separate text log. 
 Designate the start and the end of the output you want to include with the markers \*@\*lstart and \*@\*lend.
