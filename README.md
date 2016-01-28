@@ -3,6 +3,12 @@
 Literate Stata allows you to save sections of Stata output in a format that can easily be 
 inserted as linked text into a word processor document.
 
+## Install the package
+
+```
+net from https://raw.githubusercontent.com/mcallaghan/literate_stata/master
+```
+
 ## Save logs (demarcated with *@s and *@e
 
 ```
