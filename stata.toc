@@ -1,0 +1,4 @@
+v 3
+d Max Callaghan
+d Literate Stata
+p logs2rtf
