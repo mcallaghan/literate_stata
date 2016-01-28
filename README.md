@@ -6,7 +6,7 @@ inserted as linked text into a word processor document.
 ## Install the package
 
 ```
-net from https://raw.githubusercontent.com/mcallaghan/literate_stata/master
+net from http://mcallaghan.github.io/literate_stata/
 ```
 
 ## Save logs (demarcated with *@s and *@e)
