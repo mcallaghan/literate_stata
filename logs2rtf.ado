@@ -131,7 +131,7 @@ program define logs2rtf
 		
 		file write myFile`"preamble="{\rtf1\utf-8\deff0{\fonttbl{\f0 courier;}}{\colortbl\red0\green0\blue0;\red"\$red"\green"\$green"\blue"\$blue";}\cf1\fs"\$fs"'_n
 
-		file write myFile`"for file in /*.log; do"'_n
+		file write myFile`"for file in *.log; do"'_n
 		file write myFile _tab`"IFS='.' read -r -a array <<< "\$file""'_n
 		file write myFile _tab`"IFS='.' read -r -a array <<< "\${array[0]}""'_n
 		file write myFile _tab`"newfile="\${array[-1]}""'_n
@@ -145,7 +145,7 @@ program define logs2rtf
 		
 		file write myFile _tab`"while read line; do"'_n
 		
-		file write myFile _tab _tab`"if [[ \$line == *endStr* ]]; then"'_n
+		file write myFile _tab _tab`"if [[ \$line == *\$endStr* ]]; then"'_n
 		file write myFile _tab _tab _tab`"write=0;"'_n
 		file write myFile _tab _tab _tab`"echo '}' >> \$newfile;"'_n
 		file write myFile _tab _tab`"fi"'_n _n
@@ -165,18 +165,18 @@ program define logs2rtf
 		file write myFile _tab _tab _tab _tab`"fi"'_n
 		file write myFile _tab _tab _tab`"fi"'_n _n
 		
-		file write myFile _tab _tab _tab`"if [[ \$results == 'FALSE' ]]; then"'_n
-		file write myFile _tab _tab _tab _tab `"echo \line'\line' >> \$newfile"'_n
+		file write myFile _tab _tab _tab`"if [[ \$line == 'blank' ]]; then"'_n
+		file write myFile _tab _tab _tab _tab `"echo \$line'\line' >> \$newfile"'_n
 		file write myFile _tab _tab _tab`"fi"'_n
 		
 		file write myFile _tab _tab`"fi"'_n _n	
 		
-		file write myFile _tab _tab`"if [[ \$line == *startStr* ]]; then"'_n
+		file write myFile _tab _tab`"if [[ \$line == *\$startStr* ]]; then"'_n
 		file write myFile _tab _tab _tab`"write=1;"'_n
-		file write myFile _tab _tab _tab`"args=\$(grep -o '{[^}]*}' <<< \$line;"'_n
+		file write myFile _tab _tab _tab`"args=\$(grep -o '{[^}]*}' <<< \$line);"'_n
 		file write myFile _tab _tab _tab`"args=\${args/'}'/};"'_n
 		file write myFile _tab _tab _tab`"args=\${args/'{'/}"'_n
-		file write myFile _tab _tab _tab`"IFS=',' read -r -a arglist <<< \$args);"'_n
+		file write myFile _tab _tab _tab`"IFS=',' read -r -a arglist <<< \$args;"'_n
 		file write myFile _tab _tab _tab`"for a in \${argslist[@]}; do"'_n
 		file write myFile _tab _tab _tab _tab`"IFS="=" read -r -a arg <<< \$a;"'_n
 		file write myFile _tab _tab _tab _tab`"if [[ \$arg == *'results'* ]]; then"'_n
@@ -194,7 +194,7 @@ program define logs2rtf
 		
 		file close myFile
 		
-		shell chmod 777
+		shell chmod +x lrtfscript.sh
 		
 		shell ./lrtfscript.sh
 	}
