@@ -1,3 +1,4 @@
-t hello world
+d Max Callaghan
+d Literate Stata
 
 p logs2rtf
