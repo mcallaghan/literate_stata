@@ -25,9 +25,9 @@ logs2rtf ,
 
 ## Insert text from file as a link into your word processor
 
-![insert text from file](txtAsFile.PNG)
+![insert text from file](txtAsFile.png)
 
-![insert as link](insertAsLink.PNG)
+![insert as link](insertAsLink.png)
 
 
 In your do file, save each portion of output you want to be included in your wp doc as a separate text log. 
