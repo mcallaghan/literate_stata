@@ -9,7 +9,7 @@ inserted as linked text into a word processor document.
 net from https://raw.githubusercontent.com/mcallaghan/literate_stata/master
 ```
 
-## Save logs (demarcated with *@s and *@e
+## Save logs (demarcated with *@s and *@e)
 
 ```
 cap log close
