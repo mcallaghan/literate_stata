@@ -117,7 +117,7 @@ program define logs2rtf
 	} 
 	else {
 	
-		file open myFile using "`c(pwd)'\lrtfscript.sh", write replace
+		file open myFile using "`c(pwd)'/lrtfscript.sh", write replace
 		file write myFile`"#!/bin/bash"'_n
 		file write myFile`"src="`src'""'_n
 		file write myFile`"dest="`dest'" "'_n
@@ -131,10 +131,10 @@ program define logs2rtf
 		
 		file write myFile`"preamble="{\rtf1\utf-8\deff0{\fonttbl{\f0 courier;}}{\colortbl\red0\green0\blue0;\red"\$red"\green"\$green"\blue"\$blue";}\cf1\fs"\$fs"'_n
 
-		file write myFile`"for file in \$folder/*.log; do"'_n
+		file write myFile`"for file in /*.log; do"'_n
 		file write myFile _tab`"IFS='.' read -r -a array <<< "\$file""'_n
 		file write myFile _tab`"IFS='.' read -r -a array <<< "\${array[0]}""'_n
-		file write myFile _tab`"newfile="\${array[-1]}"'_n
+		file write myFile _tab`"newfile="\${array[-1]}""'_n
 		file write myFile _tab`"newfile=\$newfile.rtf"'_n
 		file write myFile _tab`"> \$newfile"'_n
 		file write myFile _tab`"echo \$preamble >> \$newfile;"'_n
@@ -193,6 +193,8 @@ program define logs2rtf
 		file write myFile`"done"'_n
 		
 		file close myFile
+		
+		shell chmod 777
 		
 		shell ./lrtfscript.sh
 	}
