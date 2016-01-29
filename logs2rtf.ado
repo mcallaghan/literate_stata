@@ -41,9 +41,9 @@ program define logs2rtf
 		file write myFile _tab _tab`"intArgsEnd = InStr(strContents, "}") "'_n 
 		file write myFile _tab _tab`"intArgsCharacters = intArgsEnd - intStart"' _n
 		
-		file write myFile _tab _tab`"'Wscript.Echo intStart"'_n
-		file write myFile _tab _tab`"'Wscript.Echo intArgsEnd"'_n
-		file write myFile _tab _tab`"'Wscript.Echo intArgsCharacters"'_n
+		file write myFile _tab _tab`"if intArgsEnd = 0 Then"' _n
+		file write myFile _tab _tab _tab`"intArgsCharacters = 0"' _n
+		file write myFile _tab _tab`"End If"' _n
 		
 		file write myFile _tab _tab`"echo = "FALSE""'_n
 		file write myFile _tab _tab`"results = "TRUE""'_n
@@ -102,7 +102,7 @@ program define logs2rtf
 		
 		file write myFile _tab _tab`"strText = newText"'_n
 		
-		file write myFile _tab _tab`"Set newobjFile = objFSO.CreateTextFile("`dest'" & strFileName) "'_n
+		file write myFile _tab _tab`"Set newobjFile = objFSO.CreateTextFile("`dest'\" & strFileName) "'_n
 		file write myFile _tab _tab`"strText = replace(strText,VbCrLf,"\line ") "'_n
 
 		file write myFile _tab _tab `"newobjFile.Write "{\rtf1\utf-8\deff0{\fonttbl{\f0 courier;}}{\colortbl\red`red'\green0\blue0;\red`red'\green`green'\blue`blue';}\cf1\fs`fs'" & strText & "}" "' _n
