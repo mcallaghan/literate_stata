@@ -39,7 +39,7 @@ logs2rtf ,
 In your do file, save each portion of output you want to be included in your wp doc as a separate text log. 
 Designate the start and the end of the output you want to include with the markers \*@s and \*@e.
 
-The program in this ado file (which you can store on your computer following [these](https://stata.com/manuals13/u17.pdf) (pdf)
+The program in this ado file (which you can manually install following [these](https://stata.com/manuals13/u17.pdf) (pdf)
 instructions) extracts the bit of the log you want (cleaning up some record-keeping stuff that is automatically included) and saves
 it as an rtf file with some formatting options which you can customise (values between 0 and 255 for red, green and blue as well as
 font size).
