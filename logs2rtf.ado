@@ -45,7 +45,7 @@ program define logs2rtf
 		file write myFile _tab _tab _tab`"intArgsCharacters = 0"' _n
 		file write myFile _tab _tab`"End If"' _n
 		
-		file write myFile _tab _tab`"echo = "FALSE""'_n
+		file write myFile _tab _tab`"echo = "TRUE""'_n
 		file write myFile _tab _tab`"results = "TRUE""'_n
 		
 		file write myFile _tab _tab`"strArgs = Mid(strContents, intStart, intArgsCharacters) "'_n
@@ -63,7 +63,7 @@ program define logs2rtf
 		
 		file write myFile _tab _tab`"next"'_n
 		
-		file write myFile _tab _tab`"intEnd = InStr(strContents, strEndText) "'_n
+		file write myFile _tab _tab`"intEnd = InStr(strContents, strEndText) - 4"'_n
 		
 		file write myFile _tab _tab`"if intArgsEnd > 0 Then "'_n
 		file write myFile _tab _tab _tab`"intStart = intArgsEnd"'_n
@@ -71,7 +71,7 @@ program define logs2rtf
 		
 		file write myFile _tab _tab`"intCharacters = intEnd - intStart"' _n
 		
-		file write myFile _tab _tab`"strText = Mid(strContents, intStart + 3, intCharacters) "'_n
+		file write myFile _tab _tab`"strText = Mid(strContents, intStart + 1, intCharacters) "'_n
 		
 		file write myFile _tab _tab`"lines = Split(strText,VbCrLf,-1)"'_n
 		
