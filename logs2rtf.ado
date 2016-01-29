@@ -32,7 +32,7 @@ program define logs2rtf
 		file write myFile _tab _tab`"strFileName = replace(objFile.Name,".log",".rtf") "'_n
 		file write myFile _tab _tab`"strFileName2 = objFile.Name "'_n
 		file write myFile _tab _tab`"Set objFSO = CreateObject("Scripting.FileSystemObject") "'_n
-		file write myFile _tab _tab`"Set objFile = objFSO.OpenTextFile("`src'" & strFileName2, ForReading) "'_n _n
+		file write myFile _tab _tab`"Set objFile = objFSO.OpenTextFile("`src'\\"  & strFileName2, ForReading) "'_n _n
 		
 		file write myFile _tab _tab`"strContents = objFile.ReadAll "'_n _n
 		
