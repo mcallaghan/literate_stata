@@ -5,3 +5,4 @@ d Convert log files to rtfs
 d Distribution-Date: 29 January 2016
 d Max Callaghan
 f logs2rtf.ado
+f logs2rtf.sthlp
