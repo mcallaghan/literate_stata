@@ -32,7 +32,7 @@ program define logs2rtf
 		file write myFile _tab _tab`"strFileName = replace(objFile.Name,".log",".rtf") "'_n
 		file write myFile _tab _tab`"strFileName2 = objFile.Name "'_n
 		file write myFile _tab _tab`"Set objFSO = CreateObject("Scripting.FileSystemObject") "'_n
-		file write myFile _tab _tab`"Set objFile = objFSO.OpenTextFile("logs\" & strFileName2, ForReading) "'_n _n
+		file write myFile _tab _tab`"Set objFile = objFSO.OpenTextFile("`src'" & strFileName2, ForReading) "'_n _n
 		
 		file write myFile _tab _tab`"strContents = objFile.ReadAll "'_n _n
 		
@@ -133,15 +133,18 @@ program define logs2rtf
 
 		file write myFile`"for file in *.log; do"'_n
 		file write myFile _tab`"IFS='.' read -r -a array <<< "\$file""'_n
-		file write myFile _tab`"IFS='.' read -r -a array <<< "\${array[0]}""'_n
-		file write myFile _tab`"newfile="\${array[-1]}""'_n
+		file write myFile _tab`"IFS='/' read -r -a array <<< "\${array[0]}""'_n
+		file write myFile _tab`"newfile="\$array""'_n
+		file write myFile _tab`"if [[ \$array == *'/'* ]]; then"'_n
+		file write myFile _tab _tab`"newfile="\${array[-1]}""'_n
+		file write myFile _tab`"fi"'_n
 		file write myFile _tab`"newfile=\$newfile.rtf"'_n
 		file write myFile _tab`"> \$newfile"'_n
 		file write myFile _tab`"echo \$preamble >> \$newfile;"'_n
 		
 		file write myFile _tab`"write=0;"'_n
 		file write myFile _tab`"results="TRUE";"'_n
-		file write myFile _tab`"echo="FALSE";"'_n
+		file write myFile _tab`"echo="TRUE";"'_n
 		
 		file write myFile _tab`"while read line; do"'_n
 		
@@ -165,7 +168,7 @@ program define logs2rtf
 		file write myFile _tab _tab _tab _tab`"fi"'_n
 		file write myFile _tab _tab _tab`"fi"'_n _n
 		
-		file write myFile _tab _tab _tab`"if [[ \$line == 'blank' ]]; then"'_n
+		file write myFile _tab _tab _tab`"if [[ \$line != 'blank' ]]; then"'_n
 		file write myFile _tab _tab _tab _tab `"echo \$line'\line' >> \$newfile"'_n
 		file write myFile _tab _tab _tab`"fi"'_n
 		

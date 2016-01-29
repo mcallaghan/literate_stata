@@ -1,6 +1,6 @@
 ********************************************** logs2rtf.pkg
-v 3
+v 1
 d logs2rtf
 d Convert log files to rtfs
-d Distribution-Date: 28 January 2016
+d Distribution-Date: 29 January 2016
 f logs2rtf.ado
