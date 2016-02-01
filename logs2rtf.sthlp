@@ -29,6 +29,8 @@
 current working directory){p_end}
 {synopt:{opt dest}}Specify a location to save rtf files (if other than the 
 current working directory){p_end}
+{synopt:{opt echo}}Set to "FALSE" to remove commands from output{p_end}
+{synopt:{opt results}}Set to "FALSE" to remove results from output{p_end}
 {syntab:Formatting}
 {synopt:{opt red(#)}}Specify the 0-255 rgb value for red (default 0){p_end}
 {synopt:{opt green(#)}}Specify the 0-255 rgb value for green (default 0){p_end}
