@@ -113,7 +113,7 @@ program define logs2rtf
 		file write myFile _tab _tab`"Set newobjFile = objFSO.CreateTextFile("`dest'\" & strFileName) "'_n
 		file write myFile _tab _tab`"strText = replace(strText,VbCrLf,"\line ") "'_n
 
-		file write myFile _tab _tab `"newobjFile.Write "{\rtf1\utf-8\deff0{\fonttbl{\f0 courier;}}{\colortbl\red`red'\green0\blue0;\red`red'\green`green'\blue`blue';}\cf1\fs`fs'" & strText & "}" "' _n
+		file write myFile _tab _tab `"newobjFile.Write "{\rtf1\utf-8\deff0{\fonttbl{\f0 courier;}}{\colortbl\red`red'\green0\blue0;\red`red'\green`green'\blue`blue';}\cf1\fs`fs' " & strText & "}" "' _n
 
 		file write myFile _tab _tab`"objFile.Close "'_n
 		file write myFile _tab `"End If "'_n
@@ -137,7 +137,7 @@ program define logs2rtf
 		file write myFile`"startStr="*@s" "'_n
 		file write myFile`"endStr="*@e" "'_n
 		
-		file write myFile`"preamble="{\rtf1\utf-8\deff0{\fonttbl{\f0 courier;}}{\colortbl\red0\green0\blue0;\red"\$red"\green"\$green"\blue"\$blue";}\cf1\fs"\$fs"'_n
+		file write myFile`"preamble="{\rtf1\utf-8\deff0{\fonttbl{\f0 courier;}}{\colortbl\red0\green0\blue0;\red"\$red"\green"\$green"\blue"\$blue";}\cf1\fs"\$fs"" "'_n
 
 		file write myFile`"for file in *.log; do"'_n
 		file write myFile _tab`"IFS='.' read -r -a array <<< "\$file""'_n
