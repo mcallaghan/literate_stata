@@ -1,6 +1,6 @@
 cap program drop logs2rtf
 program define logs2rtf
-	syntax  , [src(string ) dest(string ) red(integer 0) green(integer 0) blue(integer 0) fs(integer 8) ]
+	syntax  , [src(string ) dest(string ) red(integer 0) green(integer 0) blue(integer 0) fs(integer 8) echo(string) results(string)]
 	
 	local fs = `fs'*2
 	
@@ -10,6 +10,14 @@ program define logs2rtf
 	
 	if "`dest'" == "" {
 		local dest "`c(pwd)'"
+	}
+	
+	if "`echo'" == "" {
+		local echo "TRUE"
+	}
+	
+	if "`results'" == "" {
+		local results "TRUE"
 	}
 	
 	if c(os) == "Windows" {
@@ -45,8 +53,8 @@ program define logs2rtf
 		file write myFile _tab _tab _tab`"intArgsCharacters = 0"' _n
 		file write myFile _tab _tab`"End If"' _n
 		
-		file write myFile _tab _tab`"echo = "TRUE""'_n
-		file write myFile _tab _tab`"results = "TRUE""'_n
+		file write myFile _tab _tab`"echo = "`echo'""'_n
+		file write myFile _tab _tab`"results = "`results'""'_n
 		
 		file write myFile _tab _tab`"strArgs = Mid(strContents, intStart, intArgsCharacters) "'_n
 		file write myFile _tab _tab`"Args = Split(strArgs,",",-1) "'_n
@@ -143,8 +151,8 @@ program define logs2rtf
 		file write myFile _tab`"echo \$preamble >> \$newfile;"'_n
 		
 		file write myFile _tab`"write=0;"'_n
-		file write myFile _tab`"results="TRUE";"'_n
-		file write myFile _tab`"echo="TRUE";"'_n
+		file write myFile _tab _tab`"echo = "`echo'""'_n
+		file write myFile _tab _tab`"results = "`results'""'_n
 		
 		file write myFile _tab`"while read line; do"'_n
 		
