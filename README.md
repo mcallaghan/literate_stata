@@ -26,7 +26,7 @@ cap log close
 ## Run the command to format as rtf
 
 ```
-logs2rtf , 
+logs2rtf
 ```
 
 ## Insert text from file as a link into your word processor
@@ -41,8 +41,7 @@ Designate the start and the end of the output you want to include with the marke
 
 The program in this ado file (which you can manually install following [these](https://stata.com/manuals13/u17.pdf) (pdf)
 instructions) extracts the bit of the log you want (cleaning up some record-keeping stuff that is automatically included) and saves
-it as an rtf file with some formatting options which you can customise (values between 0 and 255 for red, green and blue as well as
-font size).
+it as an rtf file with some formatting options which you can customise.
 
 In a word document you can "Insert text from file" then click the insert drop-down arrow then "Insert as link". 
 This way, every time you run your analysis again, you can go into your word document, select all, and then press F9 to
@@ -58,5 +57,5 @@ And here's the syntax:
 syntax  ,[src(string) dest(string) red(integer 0) green(integer 0) blue(integer 0) fs(integer 8) echo(string) results(string)]
 ```
 
-src and string are mandatory options to tell stata where to look for your log files and where to save the rtf files,
+src and string are options to tell stata where to look for your log files and where to save the rtf files (default is the working directory),
 the other options are for formatting. Enter a value between 0 and 255 for the colours, a font size for fs, and "FALSE" to echo or results to hide commands or results.
