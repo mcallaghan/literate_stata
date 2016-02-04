@@ -55,8 +55,8 @@ Here's an example:
 
 And here's the syntax:
 ```
-syntax  ,src(string) dest(string) [ red(integer 0) green(integer 0) blue(integer 0) fs(integer 8) ]
+syntax  ,[src(string) dest(string) red(integer 0) green(integer 0) blue(integer 0) fs(integer 8) echo(string) results(string)]
 ```
 
 src and string are mandatory options to tell stata where to look for your log files and where to save the rtf files,
-the other options are for formatting.
+the other options are for formatting. Enter a value between 0 and 255 for the colours, a font size for fs, and "FALSE" to echo or results to hide commands or results.
