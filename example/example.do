@@ -14,8 +14,8 @@ cap log close
 
 log using ex_2, text replace
 *@s
-reg price weight
+reg price weight rep78
 *@e
 cap log close
 
-*logs2rtf
+logs2rtf
