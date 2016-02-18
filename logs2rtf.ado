@@ -141,8 +141,8 @@ program define logs2rtf
 		file write myFile _tab`"echo \$preamble >> \$newfile;"'_n
 		
 		file write myFile _tab`"write=0;"'_n
-		file write myFile _tab _tab`"echo = "`echo'""'_n
-		file write myFile _tab _tab`"results = "`results'""'_n
+		file write myFile _tab _tab`"echo = "`echo'";"'_n
+		file write myFile _tab _tab`"results = "`results'";"'_n
 		
 		file write myFile _tab`"while read line; do"'_n
 		
