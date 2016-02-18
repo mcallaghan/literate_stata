@@ -44,69 +44,59 @@ program define logs2rtf
 		
 		file write myFile _tab _tab`"strContents = objFile.ReadAll "'_n _n
 		
-		file write myFile _tab _tab`"intStart = InStr(strContents, strStartText) "'_n
-		file write myFile _tab _tab`"intStart = intStart + Len(strStartText) + 1 "'_n
-		file write myFile _tab _tab`"intArgsEnd = InStr(strContents, "}") "'_n 
-		file write myFile _tab _tab`"intArgsCharacters = intArgsEnd - intStart"' _n
-		
-		file write myFile _tab _tab`"if intArgsEnd = 0 Then"' _n
-		file write myFile _tab _tab _tab`"intArgsCharacters = 0"' _n
-		file write myFile _tab _tab`"End If"' _n
-		
 		file write myFile _tab _tab`"echo = "`echo'""'_n
 		file write myFile _tab _tab`"results = "`results'""'_n
-		
-		file write myFile _tab _tab`"strArgs = Mid(strContents, intStart, intArgsCharacters) "'_n
-		file write myFile _tab _tab`"Args = Split(strArgs,",",-1) "'_n
-		file write myFile _tab _tab`"for each a in Args"'_n
-		file write myFile _tab _tab _tab`"arg = Split(a,"=",-1)"'_n
-		
-		file write myFile _tab _tab _tab`"If instr(a,"echo") > 0 Then"'_n
-		file write myFile _tab _tab _tab _tab`"echo = arg(1)"'_n
-		file write myFile _tab _tab _tab`"End If"'_n
-		
-		file write myFile _tab _tab _tab`"If instr(a,"results") > 0 Then"'_n
-		file write myFile _tab _tab _tab _tab`"results = arg(1)"'_n
-		file write myFile _tab _tab _tab`"End If"'_n
-		
-		file write myFile _tab _tab`"next"'_n
-		
-		file write myFile _tab _tab`"intEnd = InStr(strContents, strEndText) - 4"'_n
-		
-		file write myFile _tab _tab`"if intArgsEnd > 0 Then "'_n
-		file write myFile _tab _tab _tab`"intStart = intArgsEnd"'_n
-		file write myFile _tab _tab`"End If"'_n
-		
-		file write myFile _tab _tab`"intCharacters = intEnd - intStart"' _n
-		
-		file write myFile _tab _tab`"strText = Mid(strContents, intStart + 1, intCharacters) "'_n
-		
-		file write myFile _tab _tab`"lines = Split(strText,VbCrLf,-1)"'_n
-		
 		file write myFile _tab _tab`"newText = """'_n
+		file write myFile _tab _tab`"write = 0"'_n	
+		file write myFile _tab _tab`"lines = Split(strContents,VbCrLf,-1)"'_n
 		
-		file write myFile _tab _tab`"for each l in lines"'_n
-		file write myFile _tab _tab _tab`"fc = Left(l,1)"'_n
+		file write myFile _tab _tab`"for each l in lines"'_n _n
 		
-		file write myFile _tab _tab _tab`"If echo = "FALSE" Then"'_n
-		file write myFile _tab _tab _tab _tab`"If fc = "." Then"'_n
-		file write myFile _tab _tab _tab _tab`"l = "blank""'_n
+		
+		file write myFile _tab _tab _tab`"If instr(l,strEndText) > 0 Then"'_n
+		file write myFile _tab _tab _tab _tab`"write = 0"'_n
+		file write myFile _tab _tab _tab`"End If"'_n _n _n
+
+		file write myFile _tab _tab _tab`"If write = 1 Then"'_n
+		file write myFile _tab _tab _tab _tab`"fc = Left(l,1)"'_n
+		file write myFile _tab _tab _tab _tab`"If instr(echo,"FALSE") > 0 Then"'_n
+		file write myFile _tab _tab _tab _tab _tab `"If instr(fc,".") = 1 Then"'_n
+		file write myFile _tab _tab _tab _tab _tab `"l = "blank""'_n
+		file write myFile _tab _tab _tab _tab _tab `"End If"'_n
 		file write myFile _tab _tab _tab _tab`"End If"'_n
-		file write myFile _tab _tab _tab`"End If"'_n
-		
-		file write myFile _tab _tab _tab`"If results = "FALSE" Then"'_n
-		file write myFile _tab _tab _tab _tab`"If NOT fc = "." Then"'_n
-		file write myFile _tab _tab _tab _tab`"l = "blank""'_n
+		file write myFile _tab _tab _tab _tab`"If instr(results,"FALSE") > 0 Then"'_n
+		file write myFile _tab _tab _tab _tab _tab `"If NOT fc = "." Then"'_n
+		file write myFile _tab _tab _tab _tab _tab `"l = "blank""'_n
+		file write myFile _tab _tab _tab _tab _tab `"End If"'_n
 		file write myFile _tab _tab _tab _tab`"End If"'_n
-		file write myFile _tab _tab _tab`"End If"'_n
-		
-		file write myFile _tab _tab _tab`"If NOT l = "blank" Then"'_n
-		file write myFile _tab _tab _tab`"newText = newText + l + VbCrLf"'_n
-		file write myFile _tab _tab _tab`"End If"'_n
+		file write myFile _tab _tab _tab _tab`"If NOT l = "blank" Then"'_n
+					
+		file write myFile _tab _tab _tab _tab _tab `"newText = newText + l + VbCrLf"'_n
+		file write myFile _tab _tab _tab _tab`"End If"'_n
+		file write myFile _tab _tab _tab`"End if"'_n _n
+
+		file write myFile _tab _tab _tab`"If instr(l,strStartText ) > 0 Then"'_n
+		file write myFile _tab _tab _tab _tab`"write = 1"'_n
+		file write myFile _tab _tab _tab _tab`"intArgsStart = InStr(l, "{")"'_n
+		file write myFile _tab _tab _tab _tab`"intArgsEnd = InStr(l, "}")"'_n
+		file write myFile _tab _tab _tab _tab`"if intArgsEnd > intArgsStart Then"'_n
+		file write myFile _tab _tab _tab _tab _tab`"strArgs = Mid(l, intArgsStart + 1, intArgsEnd - intArgsStart - 1) "'_n
+		file write myFile _tab _tab _tab _tab`"End If"'_n
+		file write myFile _tab _tab _tab _tab`"Args = Split(strArgs,",",-1)"'_n 
+		file write myFile _tab _tab _tab _tab`"for each a in Args"'_n
+		file write myFile _tab _tab _tab _tab _tab`"arg = Split(a,"=",-1)"'_n
+		file write myFile _tab _tab _tab _tab _tab`"If instr(a,"echo") > 0 Then"'_n
+		file write myFile _tab _tab _tab _tab _tab _tab`"echo = arg(1)"'_n
+		file write myFile _tab _tab _tab _tab _tab`"End If"'_n
+		file write myFile _tab _tab _tab _tab _tab`"If instr(a,"results") > 0 Then"'_n
+		file write myFile _tab _tab _tab _tab _tab _tab`"results = arg(1)"'_n
+		file write myFile _tab _tab _tab _tab _tab`"End If"'_n
+		file write myFile _tab _tab _tab _tab`"next"'_n
+		file write myFile _tab _tab _tab`"End If"'_n _n
 		
 		file write myFile _tab _tab`"Next"'_n
 		
-		file write myFile _tab _tab`"'Wscript.Echo newText"'_n
+		file write myFile _tab _tab`"Wscript.Echo echo"'_n
 		
 		file write myFile _tab _tab`"strText = newText"'_n
 		
