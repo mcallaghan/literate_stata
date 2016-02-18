@@ -96,7 +96,6 @@ program define logs2rtf
 		
 		file write myFile _tab _tab`"Next"'_n
 		
-		file write myFile _tab _tab`"Wscript.Echo echo"'_n
 		
 		file write myFile _tab _tab`"strText = newText"'_n
 		
